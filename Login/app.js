@@ -17,8 +17,9 @@ const loginHandler = () => {
     });
     if(!foundUser) return alert("No User Found!");
     if(foundUser.password !== password.value) return alert("Incorrect Credentials!");
-    alert("Login Successfully, diverting yu to the home page!");
+    alert("Login Successfully, diverting you to the home page!");
     localStorage.setItem('loggedInUser', JSON.stringify(foundUser));
+    
     setTimeout(() => {
         window.location.href = '../Home/index.html'
     },2000);

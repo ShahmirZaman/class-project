@@ -2,6 +2,7 @@ const userName = document.getElementById("username");
 const email = document.getElementById("user-email");
 const password = document.getElementById("password");
 const cpassword = document.getElementById("cpassword");
+const button = document.getElementById("signup-btn");
 
 const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 if(loggedInUser) window.location.href = '../Home/index.html'
@@ -27,12 +28,12 @@ const signUpHandler = () => {
         if(user.userName === userName.value) return user
     })
     if(userNameFound) {
-        return alert("Username already exists!");
+        return alert("UserName already exists!");
     }
     const userEmailFound = users.find((user) => {
         if(user.email === email.value) return user
     })
-    if(userEmailFound) return alert("Useremail already exists!")
+    if(userEmailFound) return alert("UserEmail already exists!")
     const user = {
         userName:userName.value,
         userEmail:email.value,
@@ -41,9 +42,9 @@ const signUpHandler = () => {
     }
     users.push(user);
     localStorage.setItem("users",JSON.stringify(users));
-
+    window.location.href = '../login/index.html'
     alert("Signup SuccessFully, now you can login, diverting you to the login page");
-    setTimeout(() => {
-        window.location.href = './Login/index.html'
-    },2000);
+    // setTimeout(() => {
+    //     window.location.href = '../login/index.html'
+    // },2000);
 }
