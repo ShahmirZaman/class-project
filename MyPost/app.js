@@ -1,20 +1,24 @@
 const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))
-
+console.log(loggedInUser);
 if(!loggedInUser) window.location.href = '../login/index.html'
 
-// const userName = document.getElementById('userName')
-
-// userName.innerHTML = JSON.parse(localStorage.getItem('loggedInUser')).userName
-
-const postInput = document.querySelector("#postInput");
-const postImageUrl = document.querySelector("#imageUrl");
 let postDisplayArea = document.querySelector(".card-container");
-let imageUrl;
 
 const postLocalStorage = JSON.parse(localStorage.getItem('posts')) || [];
+console.log(postLocalStorage);
+
 function postDisplayHandler() {
     postDisplayArea.innerHTML = "";
-    postLocalStorage.reverse().forEach((element) => {
+    let filterPost = postLocalStorage.filter((element) => {
+        if(element.userDetails.userName == JSON.parse(localStorage.getItem('loggedInUser')).userName) {
+            return true;
+        }
+    })
+    if(filterPost == "") {
+        filterPost = postLocalStorage
+    }
+    console.log(filterPost);
+    filterPost.reverse().forEach((element) => {
         let card = `
         <div class="card mb-3" style="max-width: 540px; margin-top: 5px;">
         <div class="row g-0">
@@ -37,34 +41,9 @@ function postDisplayHandler() {
 }
 postDisplayHandler();
 
-function postInputHandler() {
-        let postObj;
-        if(imageUrl) {
-            postObj = {
-                inputText: postInput.value,
-                image:imageUrl,
-                userDetails:JSON.parse(localStorage.getItem("loggedInUser")),
-            }
-        } else {
-            postObj = {
-                inputText: postInput.value,
-                userDetails:JSON.parse(localStorage.getItem("loggedInUser")),
-            }
-        }
-        postLocalStorage.push(postObj);
-        localStorage.setItem("posts",JSON.stringify(postLocalStorage));
-        postInput.value = "";
-        postImageUrl.value = "";
-        postDisplayHandler();
-}
-function postImageHandler() {
-        console.log(postImageUrl.value,"====>>>>Image")
-        imageUrl = postImageUrl.value;
-}
 function logoutHandler() {
     // console.log("Chal rha hai kia???")
     localStorage.removeItem('loggedInUser')
 
     window.location.href = '../login/index.html'
 }
-

@@ -29,7 +29,10 @@ body {
     color: black;
     border: none;
 }
-
+.card-image {
+    width: 100px !important;
+    height: 200px !important;
+}
 
 /* .container {
     background-color: #0bb495;
