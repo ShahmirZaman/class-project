@@ -33,7 +33,24 @@ body {
     width: 100px !important;
     height: 200px !important;
 }
-
+#editPost {
+    /* padding: 5px 20px; */
+    margin-right: 5px;
+    padding: 2px 5px;
+    border-radius: 10px;
+    background-color: #0bb495;
+    color: #ffffff;
+    border: none;
+}
+#deletePost {
+    /* padding: 5px 20px; */
+    margin-right: 5px;
+    padding: 2px 5px;
+    border-radius: 10px;
+    background-color: #0bb495;
+    color: #ffffff;
+    border: none;
+}
 /* .container {
     background-color: #0bb495;
     width: 100%;

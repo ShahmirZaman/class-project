@@ -14,7 +14,8 @@ let imageUrl;
 const postLocalStorage = JSON.parse(localStorage.getItem('posts')) || [];
 function postDisplayHandler() {
     postDisplayArea.innerHTML = "";
-    postLocalStorage.reverse().forEach((element) => {
+    const postLocalStorage = JSON.parse(localStorage.getItem('posts')) || [];
+    postLocalStorage.forEach((element) => {
         let card = `
         <div class="card mb-3" style="max-width: 540px; margin-top: 5px;">
         <div class="row g-0">
@@ -23,8 +24,9 @@ function postDisplayHandler() {
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">${element.userDetails.userName}</h5>
+              <h5 class="card-title">${element.userDetails.userName.toUpperCase()}</h5>
               <p class="card-text">${element.inputText}</p>
+              ${loggedInUser.userName === element.userDetails.userName ? `<button id="editPost" onclick = "editPostHandler(${element.id})">Edit</button><button id="deletePost" onclick = "deletePostHandler(${element.id})">Delete</button>` : ""}
               <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
             </div>
           </div>
@@ -41,12 +43,14 @@ function postInputHandler() {
         let postObj;
         if(imageUrl) {
             postObj = {
+                id:Date.now(),
                 inputText: postInput.value,
                 image:imageUrl,
                 userDetails:JSON.parse(localStorage.getItem("loggedInUser")),
             }
         } else {
             postObj = {
+                id:Date.now(),
                 inputText: postInput.value,
                 userDetails:JSON.parse(localStorage.getItem("loggedInUser")),
             }
@@ -67,4 +71,17 @@ function logoutHandler() {
 
     window.location.href = '../login/index.html'
 }
-
+function deletePostHandler(deleteId) {
+  console.log("Delete Post",deleteId)
+  const forDeletePost = JSON.parse(localStorage.getItem('posts'))
+  console.log(forDeletePost);
+  const filteredPost = forDeletePost.filter((post) => {
+     return post.id != deleteId;
+  })
+  console.log(filteredPost);
+  localStorage.setItem('posts',JSON.stringify(filteredPost))
+  postDisplayHandler();
+}
+function editPostHandler(editId) {
+  console.log("Edit Post",editId)
+}
