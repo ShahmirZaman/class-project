@@ -12,8 +12,12 @@ body {
     height: 50px;
     margin-right: 20px;
 }
+/* #profilePicture2 {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+} */
 .post-container {
-    border: 2px solid red;
     margin-top: 20px;
     display: flex;
     flex-direction: column;

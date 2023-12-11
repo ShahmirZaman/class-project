@@ -35,6 +35,7 @@ const signUpHandler = () => {
     })
     if(userEmailFound) return alert("UserEmail already exists!")
     const user = {
+        id:Date.now(),
         userName:userName.value,
         userEmail:email.value,
         password:password.value,
