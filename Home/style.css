@@ -3,15 +3,24 @@
     padding: 0;
     box-sizing: border-box;
 }
-body {
-    background-color: #0bb495 !important;
-}
 #profilePicture {
     border-radius: 50%;
     width: 50px;
     height: 50px;
     margin-right: 20px;
 }
+.nav-link {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+.navbar-brand {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+}
+.dropdown-menu {
+    background-color: #0bb495 !important;
+}
+
 /* #profilePicture2 {
     width: 5rem;
     height: 5rem;
@@ -32,6 +41,12 @@ body {
     text-transform: uppercase;
     color: black;
     border: none;
+    background-color: #0bb495;
+    color: #ffffff;
+}
+.post-container input {
+    border: 2px solid #0bb495;
+    outline: #056654;
 }
 .card-image {
     width: 100px !important;
@@ -42,8 +57,8 @@ body {
     margin-right: 5px;
     padding: 2px 5px;
     border-radius: 10px;
-    background-color: #0bb495;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #056654;
     border: none;
 }
 #deletePost {
@@ -51,9 +66,15 @@ body {
     margin-right: 5px;
     padding: 2px 5px;
     border-radius: 10px;
-    background-color: #0bb495;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #056654;
     border: none;
+}
+/* My Profile HTML */
+.list-group-item {
+    background-color: #0bb495 !important;
+    border-bottom: 2px solid #056654 !important;
+    color: #ffffff !important;
 }
 /* .container {
     background-color: #0bb495;

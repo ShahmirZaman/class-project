@@ -8,13 +8,15 @@ const descHtml = document.querySelector('#desc')
 const emailHtml = document.querySelector('#email')
 const pNumberHtml = document.querySelector('#pNumber')
 const hobbiesHtml = document.querySelector('#hobbies')
-const profilePictureHtml = document.querySelector('#profilePicture2')
+let profilePictureHtml = document.querySelector('#profilePicture2');
+console.log("====>>>",profilePictureHtml);
 
 const userNameInput = document.querySelector('#userNameInput')
 const emailInput = document.querySelector('#emailInput')
 const phoneNumberInput = document.querySelector('#phoneNumberInput')
 const hobbiesInput = document.querySelector('#hobbiesInput')
 const imageInput = document.querySelector('#imageInput')
+console.log("====>>>>",imageInput)
 const descriptionInput = document.querySelector('#descriptionInput')
 
 userNameHtml.innerHTML = `${userName.slice(0,1).toUpperCase()}${userName.slice(1).toLowerCase()}`;
@@ -24,16 +26,19 @@ emailHtml.innerHTML = userEmail ? userEmail : "No Email Updated"
 pNumberHtml.innerHTML = pNumber ? pNumber : "No Phone Number Updated"
 hobbiesHtml.innerHTML = hobbies ? hobbies : "No hobbies Updated"
 
-if(profileUrl) {
-    profilePictureHtml.src = profileUrl;    
-}
-
-userNameInput.value = userName ? userName : "";
+userNameInput.value = userName ? userName : ""
 emailInput.value = userEmail ? userEmail : ''
 phoneNumberInput.value = pNumber ? pNumber : ''
 hobbiesInput.value = hobbies ? hobbies : ''
 imageInput.value = profileUrl ? profileUrl : ''
+console.log("====>>>>>",imageInput.value);
 descriptionInput.value = desc ? desc : ''
+
+if(profileUrl) {
+    console.log("====>>>>>",profileUrl);
+    profilePictureHtml.src = imageInput.value;
+    console.log("====>>>>>>",profilePictureHtml.src);
+}
 
 const updateProfileHandler = () => {
     const userObj = {
@@ -44,21 +49,17 @@ const updateProfileHandler = () => {
        profileUrl:imageInput.value,
        desc:descriptionInput.value,
     }
-    // console.log("////>>>>>>UserObject",userObj);
     const users = JSON.parse(localStorage.getItem('users'))
 
     let myUser = users.find((user) => {
         return user.id === id
     })
     myUser.userName = userNameInput.value,
-    myUser.userEmailmail = emailInput.value,
+    myUser.userEmail = emailInput.value,
     myUser.pNumber = phoneNumberInput.value,
     myUser.hobbies = hobbiesInput.value.split(','),
     myUser.profileUrl = imageInput.value,
-    myUser.desc = descriptionInput.value
-
-    // console.log(users,"=====>>>> Users")
-    // console.log(myUser,">>>>>>>My User")
+    myUser.desc = descriptionInput.value,
 
     localStorage.setItem('loggedInUser', JSON.stringify(userObj))
     localStorage.setItem('users', JSON.stringify(users))
